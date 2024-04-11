@@ -23,7 +23,7 @@ Deploy the text summarization model locally and test using a Jupyter Notebook.
 
 Build and deploy a docker container which hosts your local model and API server.
 
-[lab guide](./objective3/)
+[lab guide](./objective3/README.md)
 
 ## Objective 4 - Deploy Model API with NGINX
 
