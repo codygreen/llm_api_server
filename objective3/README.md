@@ -4,9 +4,9 @@ In this lab, we will add an API to our local AI model deployment.
 
 ## FastAPI
 
-For this lab, we will leverage the Python FastAPI framework to quickly build an API prototype for our LLM.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input.
+For this lab, we will leverage the Python FastAPI framework to quickly build an API prototype for our LLM.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
 
-Create a new file call _api.py_ add add the following code:
+Create a new directory called _app_ and a new file in that directory call _api.py_.  Add the following code to the _api.py_ file:
 
 ```python
 '''FastAPI server that will be used to serve the summarization model.'''
@@ -36,11 +36,19 @@ async def summarize(text: Text):
     return {"summary": summary[0]["summary_text"]}
 ```
 
-This code provides a new API endpoint _/summarize/_ that we can POST _text_ to that we want summarized.
+Some quick highlights on what this code does:
+
+- load the text_summarization model from the _/code/app/model/text_summarization_ folder; we will cover this in the _Dockerfile_.
+- builds a model to ensure our API post body contains a JSON element named _text_ and of class string.
+- provides a new API endpoint _/summarize/_ that we can POST _text_ to that we want summarized.
+- passes the supplied text.
+- returns a summary of the supplied text.
 
 ## Build Container
 
-To build our API container with our AI model, we need to create a new _Dockerfile_ with the following code:
+To build the API container with our AI model, we need to create a new _Dockerfile_ with the following code or use the file in this repository:
+
+>_**Note:**_ the folder structure for this objective is important.  The root folder contains the _Dockerfile_, a file called _requirements.txt_, a folder called _app_, where the python code lives.  If you are unsure, please refer to the objective3 folder structure in this repository.
 
 ```dockerfile
 FROM python:3.11 as builder
@@ -71,13 +79,13 @@ CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "80"]
 
 In this file, we create a _builder_ container that downloads our text summarization model, then we create a new container with our API code and copy the AI model to our api container.
 
-## Build API Container
-
-With our _Dockerfile_ created and our code ready for deployment, we can create our API container with the following command:
+With our _Dockerfile_ created and our code ready for deployment, we can create our API container using the following command:
 
 ```shell
 docker build -t llmapi .
 ```
+
+This will create a new container image named _llmapi_.
 
 ## Launch API Container
 
@@ -86,6 +94,8 @@ Now that we have our API created, we can launch our container with the following
 ```shell
 docker run -d --name llmapi -p 80:80 llmapi
 ```
+
+This will deploy our new container and provide access on TCP port 80, [http://localhost:80](http://localhost:80).
 
 ## Test the API
 
@@ -107,7 +117,13 @@ curl -i \
 
 ```
 
-You should see a summarization about the creation of NGINX.
+Lets breakdown what this script does:
+
+- The first part of this command stores the history of NGINX as an environment variable called _ARTICLE_.
+- The second part creates a new environment variable with the payload for our request. 
+- The 3rd part issues a request to the API and posts our request payload to the _summarize_ endpoint.
+
+Once you run this code, you should see a summarization about the creation of NGINX.
 
 ## Teardown
 
