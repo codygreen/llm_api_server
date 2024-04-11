@@ -11,19 +11,19 @@ To complete this lab, you will need:
 
 Test a text summarization model using a Jupyter Notebook and the Hugging Face inference API.
 
-[lab guide](./objective1)
+[lab guide](./objective1/README.md)
 
 ## Objective 2 - Deploy Model Locally
 
 Deploy the text summarization model locally and test using a Jupyter Notebook.
 
-[lab guide](./objective2)
+[lab guide](./objective2/README.md)
 
 ## Objective 3 - Build API for Local Model
 
 Build and deploy a docker container which hosts your local model and API server.
 
-[lab guide](./objective3)
+[lab guide](./objective3/)
 
 ## Objective 4 - Deploy Model API with NGINX
 
