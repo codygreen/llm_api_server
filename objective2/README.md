@@ -87,7 +87,11 @@ Hugging Face's story is one of transformation, collaboration, and empowerment. T
 print(summarizer(ARTICLE, max_length=512, min_length=30, truncation=True, do_sample=False))
 ```
 
-You should see a summary of the article. 
+You should see a summary of the article.
+
+## Teardown
+
+You can down shutdown your docker container by pressing _ctrl+c_ in the terminal you ran the _docker run_ command in.  This will terminate the Jupyter server.
 
 ## Conclusion
 

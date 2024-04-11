@@ -67,7 +67,7 @@ If everything executed successfully, you should see a summarization about the Ei
 
 ## Teardown
 
-You can down shutdown your docker container by pressing _ctrl+c_ in the terminal you ran the _docker run_ command in.  This will terminate the Jupyter server. 
+You can down shutdown your docker container by pressing _ctrl+c_ in the terminal you ran the _docker run_ command in.  This will terminate the Jupyter server.
 
 ## Conclusion
 
