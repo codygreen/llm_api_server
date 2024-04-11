@@ -31,7 +31,7 @@ Build and deploy a docker container which hosts your local model and API server.
 
 Add NGINX to objective 3 so we can add basic rate limiting.
 
-[lab guide](./objective4)
+[lab guide](./objective4/README.md)
 
 ## Objective 5 - Authorization
 
