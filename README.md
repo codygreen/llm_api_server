@@ -4,8 +4,10 @@ This lab will walk you through the creation of an API for a locally downloaded A
 
 To complete this lab, you will need:
 
- - access to a container runtime environment, such as [Podman](https://podman.io/) or [Docker](https://docker.com).
- - A [Hugging Face](https://huggingface.co/) account.
+- access to a container runtime environment, such as [Podman](https://podman.io/) or [Docker](https://docker.com).
+- A [Hugging Face](https://huggingface.co/) account.
+
+ [Interactive demos](https://app.revel.vivun.com/demos/collections/5b350f9b-a933-442f-b0f9-bba421b81b6c) have been provided for some of the steps if you are new to technology like Jupyter Notebooks.
 
 ## Objective 1 - Test Model in Hugging Face
 
