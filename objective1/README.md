@@ -4,6 +4,8 @@ In this lab, we will discovery a text summarization model in Hugging Face and te
 
 To get started, we will need to install a Jupyter Notebook.
 
+An [interactive demo](https://app.revel.vivun.com/demos/2258dcce-cf99-45e7-8dc1-29b6437de242/paths/94f47199-14a8-4779-8f1c-4c0a812dee46) has been provided to demonstrate the Hugging Face model page and the Jupyter Notebook steps if this is your first time using either. 
+
 ## Deploy Jupyter Server
 
 For this step, we will leverage a pre-built Jupyter Notebook container.  Run the following commands to start the container:
@@ -63,7 +65,7 @@ print(output[0]['summary_text'])
 
 If everything executed successfully, you should see a summarization about the Eiffel Tower.  
 
-> **_Note:_** The Hugging Face Inference API may not have the model loaded when you make your request.  If this is the case, you will see a request to try your request again.
+> **_Note:_** The Hugging Face Inference API may not have the model loaded when you make your request.  If you receive an error, this is most likely the issue.  Wait a minute and try your request again.
 
 ## Teardown
 
