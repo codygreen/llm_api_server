@@ -3,7 +3,7 @@ from transformers import pipeline
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-summarizer = pipeline("summarization", model="Falconsai/text_summarization")
+summarizer = pipeline("summarization", model="/code/app/model/text_summarization")
 
 app = FastAPI()
 
