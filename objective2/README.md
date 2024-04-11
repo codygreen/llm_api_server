@@ -4,10 +4,12 @@ In this lab, we will deploy our text summarization model from Hugging Face local
 
 Now that we have tested the FalconAI/text_summarization model and like the results, we will download the model locally so we can use it with our application.
 
+An [interactive demo](https://app.revel.vivun.com/demos/dda72454-437d-41fa-a59a-3c5fb08d612c/paths/29d5532c-d50c-4f56-9f9e-07bc6b1c0fcc) has been provided to demonstrate the Jupyter Notebook steps if this is your first time using a notebook.
+
 
 ## Build Jupyter Docker Image with Model
 
-For this lab, we will create a new Jupyter Notebook container based on the PyTorch container image but with our model already downloaded. 
+For this lab, we will create a new Jupyter Notebook container based on the [PyTorch container image](https://quay.io/repository/jupyter/pytorch-notebook) but with our model already downloaded.
 
 You can either use the Dockerfile in this repository or create the Dockerfile yourself:
 
@@ -34,7 +36,7 @@ docker build -t llmapi_obj2 .
 
 ## Deploy Jupyter Server
 
-For this step, we will leverage a pre-built Jupyter Notebook container.  Run the following commands to start the container:
+For this step, we will run the Jupyter Notebook container you just built.  Run the following commands to start the container:
 
 ```shell
 docker container run -it --rm -p 8888:8888 llmapi_obj2
@@ -46,7 +48,7 @@ Now that we have the Jupyter server up and running, we can now create a new Note
 
 In the Launcher window, click the _Python 3_ button under the Notebook section.  You should now see a new window with the title _Untitled.ipynb_.  Click the _Save_ button and call your file _text_summarization.ipynb_.
 
-Enter the following code to install dependencies:
+Enter the following code and press _shift + enter_ to install dependencies:
 
 ```shell
 !pip install transformers
@@ -54,13 +56,15 @@ Enter the following code to install dependencies:
 
 ## Local Text Summarization Model
 
-With our notebook now created, we can add the following code and execute it:
+With our notebook now created and our dependencies installed, we can add the following code to test our local version version of the text summarization model:
+
+ > _**Note:**_ remember to press _shift + enter_ to execute the code block inside the Jupyter Notebook.
 
 ```python
 import torch
 from transformers import pipeline
 
-summarizer = pipeline("summarization", model="Falconsai/text_summarization")
+summarizer = pipeline("summarization", model="model/text_summarization")
 
 ARTICLE = """ 
 Hugging Face: Revolutionizing Natural Language Processing
