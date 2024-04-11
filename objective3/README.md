@@ -120,4 +120,6 @@ docker rm llmapi
 
 ## Conclusion
 
-Now that we have a basic API for our AI model, we can easily integration the model with our production application.  However, the API is currently wide open and not protected.  The next step will be to implement rate limiting to help prevent DoS of the model. 
+Now that we have a basic API for our AI model, we can easily integration the model with our production application.  However, the API is currently wide open and not protected.  The next step will be to implement rate limiting to help prevent DoS of the model.
+
+[objective 4 lab guide](../objective4/README.md)
