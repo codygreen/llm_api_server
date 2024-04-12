@@ -1,4 +1,4 @@
-# LLM API Lab - Objective 3
+# LLM API Lab - Objective 4
 
 In this lab, we will add rate limiting for our model API using NGINX.
 
@@ -6,7 +6,7 @@ In this lab, we will add rate limiting for our model API using NGINX.
 
 Since we already have a container image for our AI model API we can leverage a docker compose file to deploy our api and nginx containers. 
 
-Create a new file called _docker-compose.yml_ with the following code:
+Create a new file called _docker-compose.yml_ with the following code or use the _docker-compose.yml_ file in the _objective4_ folder:
 
 ```dockerfile
 version: "3.8"
@@ -34,7 +34,7 @@ Lets break down what is happening in this file:
 
 ## NGINX Configuration
 
-To configure NGINX, we will need to create a new file called _nginx.conf_ with the following configuration:
+To configure NGINX, we will need to create a new file called _nginx.conf_ with the following configuration or use the _nginx.conf_ file in the _objective4_ folder:
 
 ```nginx
 events {
@@ -68,15 +68,9 @@ You should now be able to access the AI Model API on port 80, through NGINX, and
 
 ## Testing
 
-To load test our API, we will use a tool called [K6](https://k6.io/docs/get-started/running-k6/).
+To test our API, we will use a tool called [K6](https://k6.io/docs/get-started/running-k6/).
 
-Lets create a new testing script by running the following commands:
-
-```shell
-docker run --rm -i -v $PWD:/app -w /app grafana/k6 new
-```
-
-This command should have generated a new file called _script.js_ in your folder.  Open the _script.js_ file and edit the file to look like the code below:
+A test script has already been created for you. The _script.js_ file should look like the code below:
 
 ```javascript
 import http from 'k6/http';
