@@ -44,7 +44,7 @@ With a model selected, we can not test the model to determine if it fits our int
 
 > **_Note:_** this will require that you have created a Hugging Face access token which will not be covered in this lab, but is well documented in the [Hugging Face documentation](https://huggingface.co/docs/hub/en/security-tokens). 
 
-In your Jupyter Notebook browser tab, add the following code to your _text_summarization.ipynb_ window and ensure you replace _your_hugging_face_api_key_ with your actual access key:
+In your Jupyter Notebook browser tab, add the following code to your _text_summarization.ipynb_ window and ensure you replace _your_hugging_face_api_key_ with your actual access key.  To execute the code, press _shift + enter_:
 
 ```python
 import requests
