@@ -4,7 +4,7 @@ In this lab, we will add an API to our local AI model deployment.
 
 ## FastAPI
 
-For this lab, we will leverage the Python FastAPI framework to quickly build an API prototype for our LLM.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
+For this lab, we will leverage the Python [FastAPI framework](https://fastapi.tiangolo.com/) to quickly build an API prototype for our AI model.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
 
 Create a new directory called _app_ and a new file in that directory call _api.py_.  Add the following code to the _api.py_ file:
 
