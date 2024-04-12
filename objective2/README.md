@@ -11,7 +11,7 @@ An [interactive demo](https://app.revel.vivun.com/demos/dda72454-437d-41fa-a59a-
 
 For this lab, we will create a new Jupyter Notebook container based on the [PyTorch container image](https://quay.io/repository/jupyter/pytorch-notebook) but with our model already downloaded.
 
-You can either use the Dockerfile in this repository or create the Dockerfile yourself:
+You can either use the Dockerfile in this repository under the _objective2_ folder or create the Dockerfile yourself:
 
 ```docker
 FROM python:3.11 as builder
@@ -33,6 +33,16 @@ To build the container, run the following command below in the directory contain
 ```shell
 docker build -t llmapi_obj2 .
 ```
+
+To access the Jupyter server, you will need to look for the the output that contains the access FQDN and token, it will look something like this:
+
+```shell
+Or copy and paste one of these URLs:
+        http://4aae967c71b1:8888/lab?token=c325f331fc9fae368ded4f12ddb53d5457e219cfeacfa55e
+        http://127.0.0.1:8888/lab?token=c325f331fc9fae368ded4f12ddb53d5457e219cfeacfa55e
+```
+
+Copy the url into your browser of choice.
 
 ## Deploy Jupyter Server
 
