@@ -66,9 +66,8 @@ Enter the following code and press _shift + enter_ to install dependencies:
 
 ## Local Text Summarization Model
 
-With our notebook now created and our dependencies installed, we can add the following code to test our local version version of the text summarization model:
-
- > _**Note:**_ remember to press _shift + enter_ to execute the code block inside the Jupyter Notebook.
+With our notebook now created and our dependencies installed, we can add the following code to test our local version of the text summarization model.
+Press _shift + enter_ inside the code block to execute the code. The AI model response may take up to 1 minute.
 
 ```python
 import torch
@@ -101,7 +100,11 @@ Hugging Face's story is one of transformation, collaboration, and empowerment. T
 print(summarizer(ARTICLE, max_length=512, min_length=30, truncation=True, do_sample=False))
 ```
 
-You should see a summary of the article.
+You should see a summary of the article like the example below:
+
+```shell
+[{'summary_text': 'Hugging Face was founded in 2016 by Clément Delangue, Julien Chaumond, and Thomas Wolf . The name "Hugging Face" was chosen to reflect the company\'s mission of making AI models more accessible and friendly to humans, much like a comforting hug . It is best known for its open-source contributions, particularly the "Transformers Library"'}]
+```
 
 ## Teardown
 
