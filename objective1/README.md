@@ -65,7 +65,7 @@ print(output[0]['summary_text'])
 
 If everything executed successfully, you should see a summarization about the Eiffel Tower.  
 
-> **_Note:_** The Hugging Face Inference API may not have the model loaded when you make your request.  If you receive an error, this is most likely the issue.  Wait a minute and try your request again.
+> **_Note:_** The Hugging Face Inference API may not have the model loaded when you make your request.  If you receive an error, this is most likely the issue.  Wait a minute, click in text block where the code is and try your request again.
 
 ## Teardown
 
