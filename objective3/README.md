@@ -6,7 +6,7 @@ In this lab, we will add an API to our local AI model deployment.
 
 For this lab, we will leverage the Python [FastAPI framework](https://fastapi.tiangolo.com/) to quickly build an API prototype for our AI model.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
 
- Open the _api.py_ in the _app_ directory.  The code in _api.py_ is displayed below:
+ Examine the _api.py_ in the _app_ directory.  The code is displayed below:
 
 ```python
 '''FastAPI server that will be used to serve the summarization model.'''
@@ -41,7 +41,7 @@ Some quick highlights on what this code does:
 - load the text_summarization model from the _/code/app/model/text_summarization_ folder; we will cover this in the _Dockerfile_.
 - builds a model to ensure our API post body contains a JSON element named _text_ and of class string.
 - provides a new API endpoint _/summarize/_ that we can POST _text_ that we want summarized.
-- passes the supplied text.
+- passes the supplied text to the model.
 - returns a summary of the supplied text.
 
 ## Build Container
