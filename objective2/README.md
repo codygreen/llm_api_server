@@ -112,6 +112,6 @@ You can down shutdown your docker container by pressing _ctrl+c_ in the terminal
 
 ## Conclusion
 
-In this lab, you have examined the process to deploy a model locally and utilize it to summarize text.  However, this is only usable through the Jupyter Notebook.  To make this more usable for our product applications, we need to expose this model via an API.  We will evaluate this process in Object 3.
+In this lab, you have examined the process to deploy a model locally and utilize it to summarize text.  However, this is only usable through the Jupyter Notebook.  To make this more usable for our production applications, we need to expose this model via an API.  We will evaluate this process in Object 3.
 
 [objective 3 lab guide](../objective3/README.md)
