@@ -89,7 +89,7 @@ This will create a new container image named _llmapi_.
 
 ## Launch API Container
 
-Now that we have our API created, we can launch our container with the following command:
+Now that we have our API container created, we can launch our container with the following command:
 
 ```shell
 docker run -d --name llmapi -p 80:80 llmapi
