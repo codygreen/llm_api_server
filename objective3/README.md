@@ -123,7 +123,11 @@ Lets breakdown what this script does:
 - The second part creates a new environment variable with the payload for our request. 
 - The 3rd part issues a request to the API and posts our request payload to the _summarize_ endpoint.
 
-Once you run this code, you should see a summarization about the creation of NGINX.
+Once you run this code, you should see a summarization about the creation of NGINX like the output below:
+
+```shell
+{"summary":"Igor Sysoev originally wrote NGINX to solve the C10K problem . With its eventdriven, asynchronous architecture, NGINx revolutionized how servers operate in highperformance contexts and became the fastest web server available ."}%
+```
 
 ## Teardown
 
