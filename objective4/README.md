@@ -181,7 +181,7 @@ In the example above, you'll notice that all requests returned a response code o
 
 > _**Note:**_ if your response percentage is 0%, then you may have crashed your llmapi container.  Restart the container and test again.
 
-## Clean Up
+## Teardown
 
 Clean up your environment by running the following command:
 
@@ -191,6 +191,6 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we examined how to leverage NGINX to rate limit our AI model's API to protect model dos attacks.  In the next section, we will add authorization to the model API to ensure only approved users are leveraging the AI model.
+In this lab, we examined how to leverage NGINX to rate limit our AI model's API to protect from model DoS attacks.  In the next section, we will add authorization to the model API to ensure only approved users are leveraging the AI model.
 
 [objective 5 lab guide](../objective5/README.md)
