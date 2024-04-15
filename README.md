@@ -37,10 +37,16 @@ Add NGINX to objective 3 so we can add basic rate limiting.
 
 Extend objective 4 with API authorization to limit who has access to your model.
 
-[lab guide](./objective5)
+[lab guide](./objective5/README.md)
 
-## Objective 6 - API Security
+## Objective 6 - Inference Training
+
+Use our AI model's API to make inference training easier.
+
+[lab guide](./objective6/README.md)
+
+## Objective 7 - API Security
 
 Add API security measures to ensure your API is protected against common API-based attacks.
 
-[lab guide](./objective6)
+[lab guide](./objective7)
