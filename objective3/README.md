@@ -1,12 +1,22 @@
 # LLM API Lab - Objective 3
 
-In this lab, we will add an API to our local AI model deployment. 
+In this lab session, we will embark on a pivotal stage of our AI model deployment journey by augmenting our locally deployed text summarization model with an API. This transformative step will enable seamless integration of our model into production-grade applications, facilitating access from diverse platforms and empowering scalability and accessibility.
+
+Through hands-on exploration, participants will experience a high-level glimpse into API development and deployment, leveraging industry-standard tools and frameworks to expose the capabilities of our text summarization model to external systems and services.
+
+By the end of this lab, participants will have acquired the skills and knowledge necessary to bridge the gap between model development and real-world deployment.
 
 ## FastAPI
 
-For this lab, we will leverage the Python [FastAPI framework](https://fastapi.tiangolo.com/) to quickly build an API prototype for our AI model.  For this exercise, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
+[FastAPI](https://fastapi.tiangolo.com/) is a modern, high-performance web framework for building APIs with Python. Leveraging asynchronous programming techniques, FastAPI offers lightning-fast execution speeds, making it ideal for high-throughput applications. With its intuitive and easy-to-use interface, developers can rapidly create robust APIs with automatic interactive documentation generation, based on the OpenAPI standard.
 
- Examine the _api.py_ in the _app_ directory.  The code is displayed below:
+FastAPI's built-in support for data validation, serialization, and dependency injection streamlines development, while its seamless integration with popular Python data science libraries like [Pydantic](https://docs.pydantic.dev/latest/) and [SQLAlchemy](https://www.sqlalchemy.org/) further enhances its capabilities. With FastAPI, developers can efficiently build scalable, production-ready APIs with minimal effort, making it a go-to choice for projects requiring speed, reliability, and ease of development.
+
+We will leverage the FastAPI quickly and effectively build an API prototype for our AI model.  
+
+To take advantage of FastAPI's data validation via Pydantic, we need to provide the model with text that we want to summarize, so this will be our only input for the API.
+
+ Examine the _api.py_ file in the _objective3/app_ directory.  The code is displayed below:
 
 ```python
 '''FastAPI server that will be used to serve the summarization model.'''
@@ -38,7 +48,7 @@ async def summarize(text: Text):
 
 Some quick highlights on what this code does:
 
-- load the text_summarization model from the _/code/app/model/text_summarization_ folder; we will cover this in the _Dockerfile_.
+- load the text_summarization model from the _/code/app/model/text_summarization_ folder in the container; we will cover this in the _Dockerfile_.
 - builds a model to ensure our API post body contains a JSON element named _text_ and of class string.
 - provides a new API endpoint _/summarize/_ that we can POST _text_ that we want summarized.
 - passes the supplied text to the model.
@@ -46,9 +56,9 @@ Some quick highlights on what this code does:
 
 ## Build Container
 
-To build the API container with our AI model, we need to create a new _Dockerfile_ with the following code or use the file in this repository:
+To build the API container with our AI model, we will leverage the _Dockerfile_ in the _objective3_ directory:
 
->_**Note:**_ the folder structure for this objective is important.  The root folder contains the _Dockerfile_, a file called _requirements.txt_, a folder called _app_, where the python code lives.  If you are unsure, please refer to the objective3 folder structure in this repository.
+>_**Note:**_ the folder structure for this objective is important.  Please refer to the objective3 folder structure in this repository.  
 
 ```dockerfile
 FROM python:3.11 as builder
@@ -77,7 +87,16 @@ COPY --from=builder /tmp/model /code/app/model
 CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
-In this file, we create a _builder_ container that downloads our text summarization model, then we create a new container with our API code and copy the AI model to our api container.
+Lets examine what is happening in this Dockerfile:
+
+- create a _builder_ container
+- install git-lfs so we can download the model
+- downloads our text summarization model
+- create a new container from the python 3.11 base
+- install our required python dependencies
+- copy our FastAPI application code to the container
+- copy our model from the _builder_ container
+- start uvicorn to host our FastAPI application
 
 With our _Dockerfile_ created and our code ready for deployment, we can create our API container using the following command:
 
@@ -120,18 +139,18 @@ curl -i \
 Lets breakdown what this script does:
 
 - The first part of this command stores the history of NGINX as an environment variable called _ARTICLE_.
-- The second part creates a new environment variable with the payload for our request. 
+- The second part creates a new environment variable with the payload for our request.
 - The 3rd part issues a request to the API and posts our request payload to the _summarize_ endpoint.
 
 Once you run this code, you should see a summarization about the creation of NGINX like the output below:
 
 ```shell
-{"summary":"Igor Sysoev originally wrote NGINX to solve the C10K problem . With its eventdriven, asynchronous architecture, NGINx revolutionized how servers operate in highperformance contexts and became the fastest web server available ."}%
+{"summary":"Igor Sysoev originally wrote NGINX to solve the C10K problem . With its eventdriven, asynchronous architecture, NGINx revolutionized how servers operate in highperformance contexts and became the fastest web server available ."}
 ```
 
 ## Teardown
 
-Now that we have proven our API works, we can stop and delete our API container:
+Now that we have proven our API works, we can stop and delete our API container by running the following commands:
 
 ```shell
 docker stop llmapi
@@ -140,6 +159,6 @@ docker rm llmapi
 
 ## Conclusion
 
-Now that we have a basic API for our AI model, we can easily integration the model with our production application.  However, the API is currently wide open and not protected.  The next step will be to implement rate limiting to help prevent DoS of the model.
+With the foundation of a basic API for our AI model in place, we've reached a significant milestone in our deployment journey, paving the way for seamless integration into our production application. However, as the API currently lacks protection measures, it remains vulnerable to potential abuse, such as denial-of-service (DoS) attacks. Thus, the next crucial step will involve implementing rate limiting to safeguard the model's availability and performance.
 
 [objective 4 lab guide](../objective4/README.md)
