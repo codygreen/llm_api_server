@@ -1,32 +1,34 @@
 # LLM API Lab - Objective 6
 
-In this lab, we will examine how to leverage our AI Model's API for inference.
+In this lab session, we will delve into the intricacies of leveraging our AI Model's API for inference, capitalizing on the groundwork laid in previous steps with the implementation of API rate-limiting and authorization. By harnessing the power of our model's API, we aim to streamline the inference process, enabling seamless integration of our AI capabilities into diverse applications and workflows. 
+
+Through hands-on exploration, participants will gain insights into optimizing inference performance, handling API rate limits effectively, and enforcing authorization policies to ensure secure and efficient utilization of our model's capabilities. 
+
+This lab represents a pivotal moment in our deployment journey, where we bridge the gap between model development and real-world application, unlocking new opportunities for innovation and impact in the AI landscape.
 
 ## What is AI Inference
 
 IBM Research states "inference is an AI model’s moment of truth, a test of how well it can apply information learned during training to make a prediction or solve a task... training and inference can be thought of as the difference between learning and putting what you learned into practice"[^1].
 
-By providing access to the AI model via an API, we can take advantage of various progressive deployment patterns and apply them to model delivery:
+Granting access to the AI model through an API opens the door to leveraging a spectrum of progressive deployment patterns, empowering us to optimize model delivery effectively:
 
-- Blue-Green Deployments
-- Canary Releases
-- A/B Testing
-- Feature Flags
-- Observability
+- Blue-Green Deployments: Facilitate seamless transitions between different versions of the model, ensuring uninterrupted service availability.
+- Canary Releases: Safely introduce new model versions to a subset of users for validation before full-scale deployment.
+- A/B Testing: Compare the performance of different model versions in real-world scenarios to inform decision-making.
+- Feature Flags: Enable the selective activation of new model features, providing flexibility and control over functionality rollout.
+- Observability: Gain insights into model performance and behavior through comprehensive monitoring and analysis.
 
-This makes it easier for both application developers and data sciences to iterate and delivery new versions of the model.
-
-"Progressive Delivery is the next step after Continuous Delivery, where new versions are deployed to a subset of users and are evaluated in terms of correctness and performance [^2]".
+This approach streamlines the iterative process of model development and delivery for both application developers and data scientists, fostering collaboration and enabling rapid iteration towards improved model versions. As an evolution beyond Continuous Delivery, progressive delivery allows for the evaluation of new model iterations in terms of correctness and performance, ensuring a seamless transition to enhanced AI capabilities.
 
 ## Inference API via Jupyter Notebooks
 
-So far, you have interacted with the model API as a NetOps or developer would.  However, the data scientists on your team will prefer to access the model API using the same tooling they leverage for model training and research, such as Jupyter Notebooks.  
+So far, we have interacted with the model API as a NetOps or developer would.  However, the data scientists on our team prefer to access the model API using the same tooling they leverage for model training and research, such as Jupyter Notebooks.  
 
 Let's combine everything from objectives 1 - 5 together to achieve this outcome!
 
 ## Deploy Environment
 
-We will leverage our docker compose file from before with the addition of a Jupyter Notebook container.  This file is included in the _objective6_ folder and it's contents are displayed below:
+We will leverage our _docker-compose.yml_ file from _objective5_ with the addition of a Jupyter Notebook container.  This file is included in the _objective6_ folder and it's contents are displayed below:
 
 ```docker
 version: "3.8"
@@ -66,7 +68,7 @@ docker compose up -d
 
 Now that our model is up and running via an API, we can leverage our Jupyter Notebook to perform inference using data the model has not seen before.
 
-Open a browser and access the Jupyter Notebook at: [http://localhost:8888], then token is: _nginxrocks!_
+Open a browser and access the Jupyter Notebook at: [http://localhost:8888](http://localhost:8888), the token is: _nginxrocks!_
 
 In your Jupyter Notebook, you notice a directory called _notebooks_ in your explorer window with a notebook called _text_summarization.ipynb_.  Open the _text_summarization.ipynb_ file.
 
@@ -83,6 +85,8 @@ response = requests.post("http://nginx/summarize/", headers=headers, data=json.d
 response.json()
 ```
 
+Lets examine what is happening in this file:
+
 - a sample text of the [founding of F5](https://my.f5.com/manage/s/article/K245).
 - static JWT to authorization the API call.
 - post to the _/summarize/_ API endpoint.
@@ -97,9 +101,9 @@ The results of this request are interesting.  The [Falcon AI text summarization 
 {'summary': "Mike Almquist was a summer intern at the HIT lab . In 1992, he created a virtual environment demo for the lab's virtual retinal display (VRD) project . The project with UW did not materialize, and he had to live in his basement office with only a couch ."}
 ```
 
-This means that our model may need additional tuning which the data scientist can do directly in the Jupyter Notebook to produce a new model that we would then re-deploy via our API.  This tuning and re-deployment process continues until the the result tolerance meets an acceptable level.
+This dynamic process entails fine-tuning our model, a task easily undertaken by data scientists directly within the Jupyter Notebook, culminating in the production of an improved model ready for redeployment via our API. Iterations of this tuning and redeployment cycle persist until the model's performance reaches an acceptable threshold of accuracy and reliability. 
 
-This train and re-deploy model mimic the same patter application developers face today as they deploy their initial micro-services and then leverage telemetry to determine how to enhance the service and re-deploy.  This is where progressive deployment patterns can be helpful to not only our modern application developers but also to our AI-Ops and data scientists!
+This iterative train-and-redeploy model closely mirrors the iterative approach modern application developers take when deploying initial microservices, followed by leveraging telemetry to enhance services and redeploy them. Incorporating progressive deployment patterns not only benefits our contemporary application developers but also extends its advantages to our AI-Ops teams and data scientists, fostering collaboration and driving continuous improvement in our AI-driven initiatives.
 
 ## Teardown
 
@@ -111,9 +115,13 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we have worked our way through an example problem statement starting with finding and testing an AI model, to creating, deploying and securing the models via an API, and finally performing inference on the model with fresh data.
+Throughout this lab, we've traversed a comprehensive journey, navigating through an example problem statement from inception to execution. Beginning with the discovery and testing of an AI model, we proceeded to craft, deploy, and fortify our models through an API, culminating in the pivotal step of conducting inference with real-time data. 
 
-From here, you can test new models by adding addition NGINX location and/or paths. We can also produce an OpenAPI Spec for our APIs and add a WAF to protect the API from attack.
+As we stand at this juncture, the possibilities for further exploration and enhancement abound. By expanding our repertoire of models, we can extend our capabilities by incorporating additional NGINX locations, facilitating the testing and integration of diverse AI solutions. Moreover, we can elevate the accessibility and interoperability of our APIs by generating an OpenAPI Spec, fostering standardization and ease of integration across platforms. 
+
+Additionally, by fortifying our API infrastructure with a Web Application Firewall (WAF), we can proactively shield our AI models from potential threats and attacks, ensuring the integrity and security of our systems. 
+
+As we embark on the next phase of our journey, these avenues for expansion and optimization promise to enrich our AI deployment process, empowering us to unlock new realms of innovation and impact in the ever-evolving landscape of artificial intelligence.
 
 [^1]: https://research.ibm.com/blog/AI-inference-explained
 [^2]: https://blog.csanchez.org/2019/01/22/progressive-delivery-in-kubernetes-blue-green-and-canary-deployments/
