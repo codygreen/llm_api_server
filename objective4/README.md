@@ -1,12 +1,16 @@
 # LLM API Lab - Objective 4
 
-In this lab, we will add rate limiting for our model API using NGINX.
+In this lab session, we will enhance the security and reliability of our model API by implementing rate limiting using NGINX.
+
+Rate limiting is a critical measure to prevent abuse and ensure the smooth operation of our API by restricting the number of requests a client can make within a specified timeframe. Leveraging NGINX we will explore techniques to configure and fine-tune rate limits tailored to the requirements of our application.
+
+By implementing rate limiting we can effectively safeguard our model API against potential denial-of-service attacks while optimizing resource utilization and ensuring a consistent user experience for our application's consumers.
 
 ## Docker Compose
 
-Since we already have a container image for our AI model API we can leverage a docker compose file to deploy our api and nginx containers. 
+Since we already have a container image for our AI model API we can leverage a docker compose file to deploy our api and nginx containers.
 
-Create a new file called _docker-compose.yml_ with the following code or use the _docker-compose.yml_ file in the _objective4_ folder:
+We will leverage the _docker-compose.yml_ file in the _objective4_ folder with the contents below:
 
 ```dockerfile
 version: "3.8"
@@ -27,14 +31,14 @@ services:
 
 Lets break down what is happening in this file:
 
-- we are deploying two services: llmapi and nginx
+- deploying two services: llmapi and nginx
 - llmapi service will deploy on tcp port 8080 for the host an port 80 in the container
 - nginx service will deploy on tcp port 80 for the host and container
 - the _nginx.conf_ file will be mounted from the host into the NGINX container
 
 ## NGINX Configuration
 
-To configure NGINX, we will need to create a new file called _nginx.conf_ with the following configuration or use the _nginx.conf_ file in the _objective4_ folder:
+To configure NGINX, we will leverage the _nginx.conf_ in the _objective4_ folder with the following configuration:
 
 ```nginx
 events {
@@ -64,13 +68,13 @@ Now that we have our _docker-compose_ file and our NGINX configuration ready, we
 docker compose up -d
 ```
 
-You should now be able to access the AI Model API on port 80, through NGINX, and on port 8080 directly.
+You should now be able to access the AI Model API on port [http://localhost](http://localhost), through NGINX, and on port [http://localhost:8080](http://localhost:8080) directly.
 
-## Testing
+## Testing with K6
 
-To test our API, we will use a tool called [K6](https://k6.io/docs/get-started/running-k6/).
+[K6](https://k6.io/docs/get-started/running-k6/) is a modern, developer-friendly performance testing tool used to assess the scalability and reliability of web services and APIs. Offering a user-centric approach, K6 enables developers to write tests using JavaScript, providing flexibility and familiarity for those already proficient in the language.
 
-A test script has already been created for you. The _script.js_ file should look like the code below:
+For this lab, a test script has already been created for you. The _script.js_ file code is displayed below:
 
 ```javascript
 import http from 'k6/http';
@@ -100,7 +104,17 @@ export default function() {
 
 ```
 
-Now, run the following command to test our API using K6, this will take a few minutes:
+Lets examine what is happening in this code:
+
+- set our virtual users and duration
+- set a sample text to be summarized
+- make a request to the docker host's localhost interfaces with /summarize/ endpoint
+- check if the HTTP response code is 200 (OK) or 503 (rate limited)
+- check if the HTTP response body includes the word 'NGINX'
+- check if the HTTP response body includes the word 'C10K'
+- check if the HTTP response body includes the words 'Igor Sysoev'
+
+Now, run the following command to test our API using K6; this will take a few minutes:
 
 ```shell
 docker run --rm -i grafana/k6 run - <script.js
@@ -119,7 +133,7 @@ running (40.0s), 000/100 VUs, 5 complete and 96 interrupted iterations
 constant_request_rate ✓ [ 100% ] 096/100 VUs  10s  10.00 iters/s
 ```
 
-This tells us that the AI model cannot handle the simple load K6s is applying to the API.  To fix this, we should configure NGINX to rate limit our API.
+This tells us that the AI model cannot handle the simple load K6s is applying to the API.  To fix this, we will configure NGINX to rate limit our API.
 
 ## NGINX Rate Limit Configuration
 
@@ -146,9 +160,9 @@ http {
 }
 ```
 
-In this configuration, we are rate limiting to 2 requests per second per unique remote address.
+In this configuration, we are rate limiting the API to 2 requests per second per unique remote address.
 
-Now, check that your NGINX config file is correct and reload the configuration:
+Now, verify that your NGINX config file is correct and reload the configuration with the following commands:
 
 ```shell
 docker compose exec nginx nginx -t
@@ -177,7 +191,7 @@ default ↓ [ 100% ] 10 VUs  30s
       ↳  19% — ✓ 12 / ✗ 50
 ```
 
-In the example above, you'll notice that all requests returned a response code of 200 or 503, but only 19% of the requests returned a text summarization about the creation of NGINX. 
+In the example above, you'll notice that all requests returned a response code of 200 or 503, but only 19% of the requests returned a text summarization about the creation of NGINX.  This is ideal, and informs the requestor to try their request again after a random backoff period.
 
 > _**Note:**_ if your response percentage is 0%, then you may have crashed your llmapi container.  Restart the container and test again.
 
@@ -191,6 +205,8 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we examined how to leverage NGINX to rate limit our AI model's API to protect from model DoS attacks.  In the next section, we will add authorization to the model API to ensure only approved users are leveraging the AI model.
+In this lab, we've delved into the crucial task of enhancing the security and reliability of our AI model's API by implementing rate limiting through NGINX, thereby fortifying it against potential denial-of-service (DoS) attacks. By constraining the frequency and volume of incoming requests, we've taken proactive measures to safeguard the availability and performance of our model, ensuring uninterrupted service for legitimate users.
+
+However, as we prepare to transition to the next stage, it's evident that further security measures are required. In the upcoming section, we will focus on implementing authorization mechanisms to restrict access to the AI model API, ensuring that only authenticated and authorized users can leverage its capabilities.
 
 [objective 5 lab guide](../objective5/README.md)
