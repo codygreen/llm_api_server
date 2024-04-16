@@ -44,9 +44,3 @@ Extend objective 4 with API authorization to limit who has access to your model.
 Use our AI model's API to make inference training easier.
 
 [lab guide](./objective6/README.md)
-
-## Objective 7 - API Security
-
-Add API security measures to ensure your API is protected against common API-based attacks.
-
-[lab guide](./objective7)
