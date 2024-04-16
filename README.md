@@ -54,3 +54,5 @@ This objective involves building and deploying a Docker container that hosts a l
 This objective extends upon previous goals by having participants engage in AI inference tasks, learning how to effectively process real-time data through the API to generate predictions. This comprehensive approach will empower attendees to implement, secure, and operate AI-driven applications efficiently in a controlled environment.
 
 [lab guide](./objective6/README.md)
+
+>_**Note:**_ generative AI was used to help enhance the content of this lab guide.  While all information in this guide has been factually validated, I cannot guarantee the authenticity of each statement and do not declare all text as my original work.  Content sources have been provided when know and/or appropriate.
