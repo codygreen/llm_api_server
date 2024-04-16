@@ -8,6 +8,11 @@ Progressing to the second and third objectives, participants will deploy the tex
 
 The latter part of the series, encompassing objectives four through six, advances into more sophisticated territory with the integration of NGINX for API rate limiting and authorization via NGINX Plus, followed by hands-on inference training. Participants will delve into securing and optimizing API accessibility and conclude with real-time data processing to generate AI-driven predictions. Each step is aimed at enhancing the participant's ability to deploy, secure, and utilize AI models effectively, culminating in a comprehensive skill set that addresses the full spectrum of AI application challenges.
 
+## Prerequisites
+
+To fully benefit from this training, it's advisable to have a basic understanding of generative AI and the model training life cycle. Practical experience with Docker or similar container runtimes is also essential for seamless implementation of the concepts covered.
+
+A [list](training_recommendations.md) of recommended videos and articles has been provided if you need a quick primer on the prerequisite topics.
 
 ## Requirements
 
