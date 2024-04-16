@@ -1,12 +1,12 @@
 # LLM API Lab - Objective 5
 
-In this lab, we will add authorization to our model API using NGINX Plus.
+In this lab session, we will embark on the critical task of bolstering the security of our model API by implementing authorization through NGINX Plus. While various methods exist for implementing API authorization with NGINX OSS, we will focus on leveraging one of the most prevalent and robust authentication techniques: JSON Web Tokens (JWT).
 
-While there are a few ways to implement API Authorization via the NGINX OSS implementation, for this lab we will leverage one of the more prominent API authentication methods using JSON Web Tokens (JWT), which requires NGINX Plus.
+This approach provides a secure and efficient means of controlling access to our API endpoints, ensuring that only authenticated and authorized users can interact with our AI model. By harnessing the advanced capabilities of NGINX Plus, we will explore the intricacies of JWT-based authentication, empowering us to enforce fine-grained access control and protect our model API from unauthorized access and potential security threats.
 
-> _**Note**_: if you are new to JWT, check out a great introduction by Auth0 [here](https://jwt.io/introduction) and the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/).
+> _**Note:**_ if you are new to JWT, check out a great introduction by Auth0 [here](https://jwt.io/introduction) and the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/).
 
-In this lab, we will leverage static tokens, but in a production environment, you would leverage an authentication provider, like Azure Entra ID or Okta, to create the token.  Fore more information, please check out the [Authenticating API Clients with JWT and NGINX Plus blog](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/).
+> _**Note:**_ In this lab, we will leverage static tokens, but in a production environment, you should leverage an authentication provider, like Azure Entra ID or Okta, to create the token.  Fore more information, please check out the [Authenticating API Clients with JWT and NGINX Plus blog](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/).
 
 ## Obtain NGINX License
 
@@ -14,7 +14,7 @@ To leverage NGINX Plus, we will need access to the NGINX private registry, which
 
 ## Access NGINX Private Registry
 
-Now that you have the required license and access files, please follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/#myf5-download) to pull the correct NGINX Plus docker image, for this lab we will leverage the NGINX Plus image w/o Agent.
+Now that you have the required license and access files, please follow the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/#myf5-download) to pull the correct NGINX Plus docker image; for this lab we will leverage the NGINX Plus image w/o Agent.
 
 ```shell
 NGINX_JWT=`cat nginx-repo-12345abc.jwt`
@@ -31,7 +31,7 @@ docker pull private-registry.nginx.com/nginx-plus/base:debian
 
 ## NGINX Configuration
 
-We will extend the NGINX configuration from _objective4_ to enable JWT authorization for our root path.  An updated version of the _nginx.conf_ file is provided in the _objective5_ directory as well as below:
+We will extend the NGINX configuration from _objective4_ to enable JWT authorization for our root path.  An updated version of the _nginx.conf_ file is provided in the _objective5_ directory with the code below:
 
 ```nginx
 events {
@@ -58,7 +58,7 @@ There are two new directives in this file:
 - _auth_jwt_: defines the authentication realm
 - _auth_jwt_key_file_: tells NGINX Plus how to validate the signature element of the JWT
 
-For this lab, we will leverage the JWK file used in the [Authenticating API Clients with JWT and NGINX Plus blog](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/).  This file has been saved in the _objective5_ directory as _llmapi.jwk_ and it's code is also provided below:
+For this lab, we will leverage the JWK file used in the [Authenticating API Clients with JWT and NGINX Plus blog](https://www.nginx.com/blog/authenticating-api-clients-jwt-nginx-plus/).  This file has been saved in the _objective5_ directory as _llmapi.jwk_ and it's code is provided below:
 
 ```jwt
 {"keys":
@@ -76,7 +76,7 @@ For more information about the JWK file and each attribute, please reference the
 
 ## Deploy Containers
 
-Our Docker compose file will look every similar to the compose file in _objective4_, with the addition of an extra volume to map the _llmapi.jkw_ file.  An updated version is provided in the _objective5_ directory with the below contents:
+Our Docker compose file is similar to the compose file in _objective4_, with the addition of an extra volume to map the _llmapi.jkw_ file.  An updated version is provided in the _objective5_ directory with the below contents:
 
 ```docker
 version: "3.8"
@@ -102,7 +102,7 @@ Now that we have our _docker-compose_ file and our NGINX configuration ready, we
 docker compose up -d
 ```
 
-You should now be able to access the AI Model API on port 80, through NGINX, and on port 8080 directly.
+You should now be able to access the AI Model API on port [http://localhost](http://localhost), through NGINX, and on port [http://localhost:8080](http://localhost:8080) directly.
 
 ## Testing
 
@@ -141,6 +141,7 @@ With our JWT prepared, we can now issue a new request with the JWT supplied as a
 ```shell
 curl -H "Authorization: Bearer ${TEST_HEADER}" http://localhost/
 ```
+
 This should produce a JSON payload with a message of "Hello World", like below.  If you receive 401, please check ensure that your JWT matches the example above.
 
 ```shell
@@ -177,8 +178,8 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we examined how to leverage NGINX to provide authorization for our AI model's API to limit access to only our intended users.  Now that we have rate limiting and authorization implemented to protect our model, we are ready to perform inference training.
+In this lab, we've undertaken a crucial step in fortifying the security of our AI model's API by implementing authorization through NGINX, ensuring that access is restricted to our intended users only. By combining rate limiting and authorization measures, we've established a robust defense mechanism to protect our model from potential threats and unauthorized access. With these security measures in place, we can confidently proceed to the next stage of our journey: leveraging our AI model's API to streamline inference training.
 
-In the next section, we will examine how to leverage our AI Model's API to make inference training easier.
+In the upcoming section, we will explore how to harness the capabilities of our API to facilitate easier and more efficient inference training, unlocking new possibilities for model optimization and performance enhancement. This integration represents a pivotal moment in our deployment process, marking the convergence of security, accessibility, and functionality to drive innovation and progress in our AI-driven endeavors.
 
 [objective 6 lab guide](../objective6/README.md)
