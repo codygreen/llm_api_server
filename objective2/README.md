@@ -1,17 +1,26 @@
 # LLM API Lab - Objective 2
 
-In this lab, we will deploy our text summarization model from Hugging Face locally and test via our Jupyter Notebook.
+In this lab session, we will transition from testing the FalconAI/text_summarization model remotely to deploying it locally, offering several advantages:
 
-Now that we have tested the FalconAI/text_summarization model and like the results, we will download the model locally so we can use it with our application.
+1. **Privacy and Security**: By running the model locally, you maintain full control over your data and ensure that sensitive information remains on your own systems, reducing the risk of data breaches or leaks.
+
+2. **Reduced Latency**: Local execution typically results in lower latency compared to running the model on remote servers, as there is no need to transmit data over the internet. This is particularly important for real-time or interactive applications where responsiveness is crucial.
+
+3. **Offline Availability**: Running the model locally allows your application to function even without an internet connection, ensuring uninterrupted service and enabling deployment in environments with limited or intermittent connectivity.
+
+4. **Cost Efficiency**: Local execution eliminates the need for continuous access to cloud-based resources, potentially reducing operational costs, especially for applications with high inference frequency or large-scale deployment.
+
+5. **Customization and Control**: Local deployment provides greater flexibility for customization and optimization of the model according to specific requirements or constraints of your application, without being limited by the constraints of remote server configurations.
+
+6. **Compliance**: For applications that require adherence to regulatory compliance or data sovereignty requirements, running AI models locally ensures compliance with local laws and regulations governing data handling and processing.
 
 An [interactive demo](https://app.revel.vivun.com/demos/dda72454-437d-41fa-a59a-3c5fb08d612c/paths/29d5532c-d50c-4f56-9f9e-07bc6b1c0fcc) has been provided to demonstrate the Jupyter Notebook steps if this is your first time using a notebook.
 
-
 ## Build Jupyter Docker Image with Model
 
-For this lab, we will create a new Jupyter Notebook container based on the [PyTorch container image](https://quay.io/repository/jupyter/pytorch-notebook) but with our model already downloaded.
+For this lab, we will create a new Jupyter Notebook container based on the [PyTorch container image](https://quay.io/repository/jupyter/pytorch-notebook), but with our model already downloaded.
 
-You can either use the Dockerfile in this repository under the _objective2_ folder or create the Dockerfile yourself:
+We will use the Dockerfile in this repository under the _objective2_ folder with the contents below:
 
 ```docker
 FROM python:3.11 as builder
@@ -28,10 +37,20 @@ FROM quay.io/jupyter/pytorch-notebook
 COPY --from=builder /tmp/model /home/jovyan/model
 ```
 
-To build the container, run the following command below in the directory containing the Dockerfile. 
+A more detailed overview of the Dockerfile will be provided in _objective3_.
+
+To build the container, run the following command below in the _objective2_ directory containing the Dockerfile.
 
 ```shell
 docker build -t llmapi_obj2 .
+```
+
+## Deploy Jupyter Server
+
+For this step, we will run the Jupyter Notebook container you just built.  Run the following commands to start the container:
+
+```shell
+docker container run -it --rm -p 8888:8888 llmapi_obj2
 ```
 
 To access the Jupyter server, you will need to look for the the output that contains the access FQDN and token, it will look something like this:
@@ -44,19 +63,11 @@ Or copy and paste one of these URLs:
 
 Copy the url into your browser of choice.
 
-## Deploy Jupyter Server
-
-For this step, we will run the Jupyter Notebook container you just built.  Run the following commands to start the container:
-
-```shell
-docker container run -it --rm -p 8888:8888 llmapi_obj2
-```
-
 ## Install Dependencies
 
-Now that we have the Jupyter server up and running, we can now create a new Notebook using the URL from our previous step.
+Now that we have the Jupyter server up and running, we can now create a new Notebook.
 
-In the Launcher window, click the _Python 3_ button under the Notebook section.  You should now see a new window with the title _Untitled.ipynb_.  Click the _Save_ button and call your file _text_summarization.ipynb_.
+In the Launcher window, click the _Python 3_ button under the Notebook section.  You should now see a new window with the title _Untitled.ipynb_.  Click the _Save_ button (&#x1F4BE;) and call your file _text_summarization.ipynb_.
 
 Enter the following code and press _shift + enter_ to install dependencies:
 
@@ -67,7 +78,8 @@ Enter the following code and press _shift + enter_ to install dependencies:
 ## Local Text Summarization Model
 
 With our notebook now created and our dependencies installed, we can add the following code to test our local version of the text summarization model.
-Press _shift + enter_ inside the code block to execute the code. The AI model response may take up to 1 minute.
+
+Copy the code below into a new code block and press _shift + enter_ to execute the code. The AI model response may take up to 1 minute.
 
 ```python
 import torch
@@ -108,10 +120,12 @@ You should see a summary of the article like the example below:
 
 ## Teardown
 
-You can down shutdown your docker container by pressing _ctrl+c_ in the terminal you ran the _docker run_ command in.  This will terminate the Jupyter server.
+You can now shutdown your docker container by pressing _ctrl+c_ in the terminal you ran the _docker run_ command in.  This will terminate the Jupyter server.
 
 ## Conclusion
 
-In this lab, you have examined the process to deploy a model locally and utilize it to summarize text.  However, this is only usable through the Jupyter Notebook.  To make this more usable for our production applications, we need to expose this model via an API.  We will evaluate this process in Object 3.
+In conclusion, this lab has provided a comprehensive exploration of deploying a text summarization model locally, offering valuable insights into the intricate process of model deployment and utilization within the confines of a Jupyter Notebook environment. However, while the local deployment is suitable for testing and experimentation, for production-grade applications, it's imperative to expose the model via an API for broader accessibility and scalability. 
+
+Object 3 will delve into this crucial aspect, evaluating the process of transforming our locally deployed model into a robust API service, thereby bridging the gap between experimentation and real-world deployment, and unlocking the full potential of our text summarization solution for production environments.
 
 [objective 3 lab guide](../objective3/README.md)
