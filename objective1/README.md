@@ -37,7 +37,7 @@ Copy the url into your browser of choice.
 
 Now that we have the Jupyter server up and running, we can now create a new Notebook using the URL from our previous step.
 
-In the Launcher window, click the _Python 3_ button under the Notebook section.  You should now see a new window with the title _Untitled.ipynb_.  Click the _Save_ button and call your file _text_summarization.ipynb_.  
+In the Launcher window, click the _Python 3_ button under the Notebook section.  You should now see a new window with the title _Untitled.ipynb_.  Click the _Save_ button (&#x1F4BE;) and call your file _text_summarization.ipynb_.  
 
 You can also follow along with the [interactive demo](https://app.revel.vivun.com/demos/2258dcce-cf99-45e7-8dc1-29b6437de242/paths/94f47199-14a8-4779-8f1c-4c0a812dee46) if the steps above are confusing.
 
