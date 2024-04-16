@@ -124,4 +124,3 @@ Additionally, by fortifying our API infrastructure with a Web Application Firewa
 As we embark on the next phase of our journey, these avenues for expansion and optimization promise to enrich our AI deployment process, empowering us to unlock new realms of innovation and impact in the ever-evolving landscape of artificial intelligence.
 
 [^1]: https://research.ibm.com/blog/AI-inference-explained
-[^2]: https://blog.csanchez.org/2019/01/22/progressive-delivery-in-kubernetes-blue-green-and-canary-deployments/
