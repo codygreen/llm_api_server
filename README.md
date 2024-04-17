@@ -24,6 +24,7 @@ A [list](training_recommendations.md) of recommended videos and articles has bee
 
 To complete this lab, you will need:
 
+- [git](https://git-scm.com/downloads/guis) client, you will need to clone this repository
 - access to a container runtime environment, such as [Podman](https://podman.io/) or [Docker](https://docker.com).
 - bash or ZSH shell.
 - A [Hugging Face](https://huggingface.co/) account.

@@ -20,7 +20,7 @@ An [interactive demo](https://app.revel.vivun.com/demos/dda72454-437d-41fa-a59a-
 
 For this lab, we will create a new Jupyter Notebook container based on the [PyTorch container image](https://quay.io/repository/jupyter/pytorch-notebook), but with our model already downloaded.
 
-We will use the Dockerfile in this repository under the _objective2_ folder with the contents below:
+We will use the _Dockerfile_ in the _objective2_ folder with the contents below:
 
 ```docker
 FROM python:3.11 as builder
@@ -37,9 +37,9 @@ FROM quay.io/jupyter/pytorch-notebook
 COPY --from=builder /tmp/model /home/jovyan/model
 ```
 
-A more detailed overview of the Dockerfile will be provided in _objective3_.
+A more detailed overview of the _Dockerfile_ will be provided in _objective3_.
 
-To build the container, run the following command below in the _objective2_ directory containing the Dockerfile.
+To build the container, run the following command below in the _objective2_ directory.
 
 ```shell
 docker build -t llmapi_obj2 .
