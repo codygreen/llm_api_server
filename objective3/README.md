@@ -54,7 +54,7 @@ Some quick highlights on what this code does:
 
 To build the API container with our AI model, we will leverage the _Dockerfile_ in the _objective3_ directory:
 
->_**Note:**_ the folder structure for this objective is important.  Please refer to the objective3 folder structure in this repository.  
+>_**Note:**_ it is highly recommended to clone this [repository](https://github.com/codygreen/llm_api_server) and use your local version versus trying to recreate the files and folder structure yourself.  
 
 ```dockerfile
 FROM python:3.11 as builder
