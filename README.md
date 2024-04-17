@@ -22,7 +22,11 @@ To complete this lab, you will need:
 - bash or ZSH shell.
 - A [Hugging Face](https://huggingface.co/) account.
 
- [Interactive demos](https://app.revel.vivun.com/demos/collections/5b350f9b-a933-442f-b0f9-bba421b81b6c) have been provided for some of the steps if you are new to technology like Jupyter Notebooks.
+## Usage
+
+The labs are intended to be take in sequential order. If you skip ahead, you may run into missing dependencies.
+
+[Interactive demos](https://app.revel.vivun.com/demos/collections/5b350f9b-a933-442f-b0f9-bba421b81b6c) have been provided for some of the steps if you are new to technology like Jupyter Notebooks.
 
 ## Objective 1 - Test Model in Hugging Face
 
@@ -67,5 +71,3 @@ This objective builds upon previous goals by introducing a new internal API endp
 [lab guide](./objective7/README.md)
 
 >_**Note:**_ generative AI was used to help enhance the content of this lab guide.  While all information in this guide has been factually validated, I cannot guarantee the authenticity of each statement and do not declare all text as my original work.  Content sources have been provided when know and/or appropriate.
-
-
