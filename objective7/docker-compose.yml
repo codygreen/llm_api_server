@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  llmapi:
+    image: llmapi
+    ports:
+      - "8080:80"
+  nginx:
+    image: private-registry.nginx.com/nginx-plus/base:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./llmapi.jwk:/etc/nginx/llmapi.jwk
+    depends_on:
+      - llmapi
+  jupyter:
+    image: quay.io/jupyter/pytorch-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/notebooks
+    command: start-notebook.sh --NotebookApp.token='nginxrocks!'
+    depends_on:
+      - llmapi
+      - nginx
+    

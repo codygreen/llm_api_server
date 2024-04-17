@@ -60,4 +60,12 @@ This objective extends upon previous goals by having participants engage in AI i
 
 [lab guide](./objective6/README.md)
 
+## Bonus Objective - Internal API for SaaS LLMs
+
+This objective builds upon previous goals by introducing a new internal API endpoint for the Gorq Cloud infrastructure, enabling seamless integration with more advanced AI models such as Mixtral. By expanding the API capabilities, we aim to enhance the platform's AI-driven functionalities, providing users with access to state-of-the-art models for enhanced performance and innovation.
+
+[lab guide](./objective7/README.md)
+
 >_**Note:**_ generative AI was used to help enhance the content of this lab guide.  While all information in this guide has been factually validated, I cannot guarantee the authenticity of each statement and do not declare all text as my original work.  Content sources have been provided when know and/or appropriate.
+
+
