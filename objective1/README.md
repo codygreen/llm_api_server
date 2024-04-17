@@ -90,7 +90,7 @@ You can shutdown your docker container by pressing _ctrl+c_ in the terminal you 
 
 ## Conclusion
 
-In conclusion, this section has equipped you with valuable insights into the process of discovering models within Hugging Face and deploying them for remote testing using the Hugging Face Inference API. By learning these techniques, you've gained the ability to explore a myriad of cutting-edge AI models and seamlessly integrate them into your applications and projects.
+In summary, this section has provided you with valuable knowledge about finding models in Hugging Face and testing them remotely using the Hugging Face Inference API. With these skills, you can now explore a wide range of advanced AI models and easily incorporate them into your projects and applications.
 
 Next, we will walk through the process of deploying the text-summarization model locally and the advantages this provides.
 

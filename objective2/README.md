@@ -124,8 +124,8 @@ You can now shutdown your docker container by pressing _ctrl+c_ in the terminal 
 
 ## Conclusion
 
-In conclusion, this lab has provided a comprehensive exploration of deploying a text summarization model locally, offering valuable insights into the intricate process of model deployment and utilization within the confines of a Jupyter Notebook environment. However, while the local deployment is suitable for testing and experimentation, for production-grade applications, it's imperative to expose the model via an API for broader accessibility and scalability.
+In summary, this lab has covered deploying a text summarization model locally, providing insights into the process of model deployment within a Jupyter Notebook environment. However, while local deployment is great for testing, for serious applications, it's essential to make the model accessible and scalable through an API.
 
-Object 3 will delve into this crucial aspect, evaluating the process of transforming our locally deployed model into a robust API service, thereby bridging the gap between experimentation and real-world deployment, and unlocking the full potential of our text summarization solution for production environments.
+Objective 3 will focus on this important step, showing how to turn our local model into a reliable API service. This bridges the gap between testing and real-world use, unlocking the full potential of our text summarization solution for production environments.
 
 [objective 3 lab guide](../objective3/README.md)

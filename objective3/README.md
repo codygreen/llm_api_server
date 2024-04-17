@@ -1,10 +1,6 @@
 # LLM API Lab - Objective 3
 
-In this lab session, we will embark on a pivotal stage of our AI model deployment journey by augmenting our locally deployed text summarization model with an API. This transformative step will enable seamless integration of our model into production-grade applications, facilitating access from diverse platforms and empowering scalability and accessibility.
-
-Through hands-on exploration, participants will experience a high-level glimpse into API development and deployment, leveraging industry-standard tools and frameworks to expose the capabilities of our text summarization model to external systems and services.
-
-By the end of this lab, participants will have acquired the skills and knowledge necessary to bridge the gap between model development and real-world deployment.
+In this lab, we'll take the next step in deploying our AI model by adding an API to our locally deployed text summarization model. This enhancement will make it easy to use our model in applications, allowing access from different platforms and enabling scalability.
 
 ## FastAPI
 
@@ -159,6 +155,6 @@ docker rm llmapi
 
 ## Conclusion
 
-With the foundation of a basic API for our AI model in place, we've reached a significant milestone in our deployment journey, paving the way for seamless integration into our production application. However, as the API currently lacks protection measures, it remains vulnerable to potential abuse, such as denial-of-service (DoS) attacks. Thus, the next crucial step will involve implementing rate limiting to safeguard the model's availability and performance.
+Now that we have a basic API for our AI model, we've achieved an important step toward integrating it into our production application smoothly. However, because the API doesn't have any protection measures yet, it's vulnerable to potential abuse, like denial-of-service (DoS) attacks. So, the next important task is to add rate limiting to ensure the model's availability and performance are safeguarded.
 
 [objective 4 lab guide](../objective4/README.md)
