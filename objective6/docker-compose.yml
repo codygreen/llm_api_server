@@ -5,7 +5,8 @@ services:
     ports:
       - "8080:80"
   nginx:
-    image: private-registry.nginx.com/nginx-plus/base:debian
+    # image: private-registry.nginx.com/nginx-plus/base:debian
+    image: private-registry.nginx.com/nginx-plus/base:alpine
     ports:
       - "80:80"
     volumes:
