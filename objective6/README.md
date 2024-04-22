@@ -1,10 +1,6 @@
 # LLM API Lab - Objective 6
 
-In this lab session, we will delve into the intricacies of leveraging our AI Model's API for inference, capitalizing on the groundwork laid in previous steps with the implementation of API rate-limiting and authorization. By harnessing the power of our model's API, we aim to streamline the inference process, enabling seamless integration of our AI capabilities into diverse applications and workflows.
-
-Through hands-on exploration, participants will gain insights into optimizing inference performance, handling API rate limits effectively, and enforcing authorization policies to ensure secure and efficient utilization of our model's capabilities.
-
-This lab represents a pivotal moment in our deployment journey, where we bridge the gap between model development and real-world application, unlocking new opportunities for innovation and impact in the AI landscape.
+In this lab, we'll explore how to use our AI Model's API for inference, building on the earlier steps of adding API rate-limiting and authorization. By leveraging our model's API, our goal is to make the inference process easier, integrating our AI capabilities seamlessly into various applications and workflows.
 
 ## What is AI Inference
 
@@ -101,9 +97,9 @@ The results of this request are interesting.  The [Falcon AI text summarization 
 {'summary': "Mike Almquist was a summer intern at the HIT lab . In 1992, he created a virtual environment demo for the lab's virtual retinal display (VRD) project . The project with UW did not materialize, and he had to live in his basement office with only a couch ."}
 ```
 
-This dynamic process entails fine-tuning our model, a task easily undertaken by data scientists directly within the Jupyter Notebook, culminating in the production of an improved model ready for redeployment via our API. Iterations of this tuning and redeployment cycle persist until the model's performance reaches an acceptable threshold of accuracy and reliability.
+Our testing results help us understand this model may need additional tunning. This process involves refining our model, a task that data scientists can easily handle directly within the Jupyter Notebook. This results in an improved model ready for redeployment via our API. We repeat this tuning and redeployment cycle until the model's performance meets our standards for accuracy and reliability.
 
-This iterative train-and-redeploy model closely mirrors the iterative approach modern application developers take when deploying initial microservices, followed by leveraging telemetry to enhance services and redeploy them. Incorporating progressive deployment patterns not only benefits our contemporary application developers but also extends its advantages to our AI-Ops teams and data scientists, fostering collaboration and driving continuous improvement in our AI-driven initiatives.
+This cycle mirrors how modern application developers deploy initial microservices, then use telemetry to improve and redeploy them. By adopting progressive deployment patterns, we not only benefit our application developers but also extend these advantages to our AI-Ops teams and data scientists. This fosters collaboration and drives continuous improvement in our AI-driven projects.
 
 ## Teardown
 
@@ -115,12 +111,14 @@ docker compose down
 
 ## Conclusion
 
-Throughout this lab, we've traversed a comprehensive journey, navigating through an example problem statement from inception to execution. Beginning with the discovery and testing of an AI model, we proceeded to craft, deploy, and fortify our models through an API, culminating in the pivotal step of conducting inference with real-time data.
+Throughout this lab, we've traversed a comprehensive journey, navigating through an example problem statement from inception to execution. Beginning with the discovery and testing of an AI model, we proceeded to deploy and secure our model through an API, culminating in the pivotal step of conducting inference with real-time data.
 
-As we stand at this juncture, the possibilities for further exploration and enhancement abound. By expanding our repertoire of models, we can extend our capabilities by incorporating additional NGINX locations, facilitating the testing and integration of diverse AI solutions. Moreover, we can elevate the accessibility and interoperability of our APIs by generating an OpenAPI Spec, fostering standardization and ease of integration across platforms.
+Where to go from here?
 
-Additionally, by fortifying our API infrastructure with a Web Application Firewall (WAF), we can proactively shield our AI models from potential threats and attacks, ensuring the integrity and security of our systems.
+- By adding more models and NGINX locations, we can expand our capabilities and test various AI solutions. Additionally, creating an OpenAPI Spec will enhance the accessibility and compatibility of our APIs across platforms.
 
-As we embark on the next phase of our journey, these avenues for expansion and optimization promise to enrich our AI deployment process, empowering us to unlock new realms of innovation and impact in the ever-evolving landscape of artificial intelligence.
+- Enhancing our API security with a Web Application Firewall (WAF) will proactively protect our AI models from potential threats, ensuring system integrity and security.
+
+These examples are great problem statements to tackle leveraging your NGINX experience.  If you are new to NGINX, then check out some of our other [NGINX lab](https://clouddocs.f5.com/training/community/nginx/html/) to learn more!
 
 [^1]: https://research.ibm.com/blog/AI-inference-explained

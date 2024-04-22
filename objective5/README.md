@@ -1,8 +1,6 @@
 # LLM API Lab - Objective 5
 
-In this lab session, we will embark on the critical task of bolstering the security of our model API by implementing authorization through NGINX Plus. While various methods exist for implementing API authorization with NGINX OSS, we will focus on leveraging one of the most prevalent and robust authentication techniques: JSON Web Tokens (JWT).
-
-This approach provides a secure and efficient means of controlling access to our API endpoints, ensuring that only authenticated and authorized users can interact with our AI model. By harnessing the advanced capabilities of NGINX Plus, we will explore the intricacies of JWT-based authentication, empowering us to enforce fine-grained access control and protect our model API from unauthorized access and potential security threats.
+In this lab, we'll enhance the security of our model API by adding authorization with NGINX Plus. While there are different methods for API authorization with NGINX OSS, we'll focus on using one of the most used techniques: JSON Web Tokens (JWT).
 
 > _**Note:**_ if you are new to JWT, check out a great introduction by Auth0 [here](https://jwt.io/introduction) and the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/).
 
@@ -178,8 +176,8 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we've undertaken a crucial step in fortifying the security of our AI model's API by implementing authorization through NGINX, ensuring that access is restricted to our intended users only. By combining rate limiting and authorization measures, we've established a robust defense mechanism to protect our model from potential threats and unauthorized access. With these security measures in place, we can confidently proceed to the next stage of our journey: leveraging our AI model's API to streamline inference training.
+In this lab, we've taken a critical step to enhance the security of our AI model's API by adding authorization through NGINX, ensuring that only approved users can access it. By combining rate limiting and authorization, we've created a strong defense to safeguard our model from potential threats and unauthorized access. 
 
-In the upcoming section, we will explore how to harness the capabilities of our API to facilitate easier and more efficient inference training, unlocking new possibilities for model optimization and performance enhancement. This integration represents a pivotal moment in our deployment process, marking the convergence of security, accessibility, and functionality to drive innovation and progress in our AI-driven endeavors.
+With these security measures in place, we're ready to move forward to the next stage: using our AI model's API to simplify inference training.
 
 [objective 6 lab guide](../objective6/README.md)

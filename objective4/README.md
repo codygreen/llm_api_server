@@ -1,10 +1,8 @@
 # LLM API Lab - Objective 4
 
-In this lab session, we will enhance the security and reliability of our model API by implementing rate limiting using NGINX.
+In this lab, we'll make our model API more secure and reliable by adding rate limiting using NGINX.
 
-Rate limiting is a critical measure to prevent abuse and ensure the smooth operation of our API by restricting the number of requests a client can make within a specified timeframe. Leveraging NGINX we will explore techniques to configure and fine-tune rate limits tailored to the requirements of our application.
-
-By implementing rate limiting we can effectively safeguard our model API against potential denial-of-service attacks while optimizing resource utilization and ensuring a consistent user experience for our application's consumers.
+By adding rate limiting, we'll protect our model API from potential denial-of-service attacks, while also using resources efficiently and giving our application's users a consistent experience.
 
 ## Docker Compose
 
@@ -205,8 +203,8 @@ docker compose down
 
 ## Conclusion
 
-In this lab, we've delved into the crucial task of enhancing the security and reliability of our AI model's API by implementing rate limiting through NGINX, thereby fortifying it against potential denial-of-service (DoS) attacks. By constraining the frequency and volume of incoming requests, we've taken proactive measures to safeguard the availability and performance of our model, ensuring uninterrupted service for legitimate users.
+In this lab, we've strengthened the security and reliability of our AI model's API by adding rate limiting through NGINX, protecting it from potential denial-of-service (DoS) attacks. By controlling the frequency and volume of incoming requests, we've taken proactive steps to ensure our model's availability and performance, providing uninterrupted service for users.
 
-However, as we prepare to transition to the next stage, it's evident that further security measures are required. In the upcoming section, we will focus on implementing authorization mechanisms to restrict access to the AI model API, ensuring that only authenticated and authorized users can leverage its capabilities.
+However, as we move to the next stage, it's clear that more security measures are needed. In the next section, we'll concentrate on adding authorization mechanisms to limit access to the AI model API, allowing only authenticated and authorized users to use its capabilities.
 
 [objective 5 lab guide](../objective5/README.md)

@@ -2,8 +2,6 @@
 
 In this lab session, we will explore the utilization of NGINX Plus as a reverse proxy for public LLM APIs, demonstrating how companies can seamlessly grant applications access to SaaS-based LLM models without the overhead of generating unique API tokens for each application.  
 
-By leveraging NGINX, we will not only facilitate streamlined access to the SaaS LLM model but also enforce essential security measures such as rate limiting and authorization for the local interface, safeguarding the model from potential misuse or abuse.
-
 ## Groq
 
 [Groq](https://groq.com/) is unique in the AI space due to the fact they build their own AI chips that provide some of the highest tokens per second rates in the industry, which is outstanding for AI inference.  Groq states on their website:
@@ -117,6 +115,8 @@ docker compose down
 
 ## Conclusion
 
-Based on the outcomes of our experimentation, we've successfully demonstrated the efficacy of leveraging NGINX Plus as a reverse proxy for public LLM APIs. By adopting this approach, companies can streamline access to SaaS-based LLM models for their applications. Furthermore, NGINX's robust capabilities in rate limiting and authorization help secure the local interface to the SaaS LLM model, ensuring its protection against potential misuse or unauthorized access.
+I hope these labs have helped prove the effectiveness of using NGINX Plus as a reverse proxy for your AI initiatives.
 
-This comprehensive solution not only enhances API accessibility but also bolsters security measures, underscoring NGINX's versatility in facilitating the seamless integration of AI-driven solutions within diverse application environments. As we conclude this lab, we've laid a solid foundation for companies to harness the power of NGINX Plus in optimizing the utilization of public LLM APIs, empowering them to drive innovation and efficiency in their AI initiatives.
+This is just the start as F5 will continue to publish more content, trainings and capabilities on AI so make sure to check [F5.com](https://f5.com) for more details or talk with your F5 solutions engineer to learn about training in your region.
+
+Thank you for taking the lab!
