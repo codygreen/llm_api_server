@@ -61,42 +61,35 @@ To build the API container with our AI model, we will leverage the _Dockerfile_ 
 >_**Note:**_ the folder structure for this objective is important.  Please refer to the objective3 folder structure in this repository.  
 
 ```dockerfile
-FROM python:3.11 as builder
+FROM alpine as cloner
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git-lfs \
-    && git lfs install \
-    && git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization \
-    && rm -rf /tmp/model/.git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add git-lfs
+RUN git lfs install
+RUN git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization
 
-FROM python:3.11
+FROM unit:python
 
-WORKDIR /code
+WORKDIR /code/app
 
-COPY requirements.txt /code/requirements.txt
+COPY requirements.txt app/api.py .
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY --from=cloner /tmp/model /code/app/model
+RUN chown -R unit:unit .
 
-RUN mkdir -p /code/app
-
-COPY ./app /code/app
-
-COPY --from=builder /tmp/model /code/app/model
-
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "80"]
+COPY unitconf.json /docker-entrypoint.d/
 ```
 
 Lets examine what is happening in this Dockerfile:
 
-- create a _builder_ container
+- create a _cloner_ container
 - install git-lfs so we can download the model
 - downloads our text summarization model
-- create a new container from the python 3.11 base
+- create a new container from the NGINX Unit Python base
 - install our required python dependencies
 - copy our FastAPI application code to the container
-- copy our model from the _builder_ container
-- start uvicorn to host our FastAPI application
+- copy our model from the _cloner_ container
+- copy the NGINX Unit configuration to start the FastAPI application
 
 With our _Dockerfile_ created and our code ready for deployment, we can create our API container using the following command:
 
@@ -121,26 +114,16 @@ This will deploy our new container and provide access on TCP port 80, [http://lo
 With our API now deployed and running, we can run the following command to test that our AI model is working correctly:
 
 ```shell
-read -r -d '' ARTICLE << 'EOF'
-Igor Sysoev originally wrote NGINX to solve the C10K problem, a term coined in 1999 to describe the difficulty that existing web servers experienced in handling large numbers (the 10K) of concurrent connections (the C). With its event‑driven, asynchronous architecture, NGINX revolutionized how servers operate in high‑performance contexts and became the fastest web server available.
+ARTICLE="Igor Sysoev originally wrote NGINX to solve the C10K problem, a term coined in 1999 to describe the difficulty that existing web servers experienced in handling large numbers (the 10K) of concurrent connections (the C). With its event‑driven, asynchronous architecture, NGINX revolutionized how servers operate in high‑performance contexts and became the fastest web server available.\
+After open sourcing the project in 2004 and watching its use grow exponentially, Sysoev co‑founded NGINX, Inc. to support continued development of NGINX and to market NGINX Plus as a commercial product with additional features designed for enterprise customers. NGINX, Inc. became part of F5, Inc. in 2019. Today, NGINX and NGINX Plus can handle hundreds of thousands of concurrent connections, and power more of the Internet's busiest sites than any other server."
 
-After open sourcing the project in 2004 and watching its use grow exponentially, Sysoev co‑founded NGINX, Inc. to support continued development of NGINX and to market NGINX Plus as a commercial product with additional features designed for enterprise customers. NGINX, Inc. became part of F5, Inc. in 2019. Today, NGINX and NGINX Plus can handle hundreds of thousands of concurrent connections, and power more of the Internet’s busiest sites than any other server.
-EOF
-
-PAYLOAD=$(jq -c -n --arg text "$ARTICLE" '$ARGS.named')
-
-curl -i \
--H "Accept:application/json" \
--H "Content-Type:application/json" \
--X POST --data "$PAYLOAD" http://127.0.0.1:80/summarize/
-
+curl -id"{\"text\":\"$ARTICLE\"}" -H "Content-Type: application/json" http://127.0.0.1/summarize/
 ```
 
 Lets breakdown what this script does:
 
 - The first part of this command stores the history of NGINX as an environment variable called _ARTICLE_.
-- The second part creates a new environment variable with the payload for our request.
-- The 3rd part issues a request to the API and posts our request payload to the _summarize_ endpoint.
+- The `curl` command constructs a simple JSON payload from _ARTICLE_ and sends it to the API endpoint for _summarize_.
 
 Once you run this code, you should see a summarization about the creation of NGINX like the output below:
 

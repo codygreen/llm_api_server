@@ -23,18 +23,14 @@ For this lab, we will create a new Jupyter Notebook container based on the [PyTo
 We will use the Dockerfile in this repository under the _objective2_ folder with the contents below:
 
 ```docker
-FROM python:3.11 as builder
+FROM alpine as cloner
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git-lfs \
-    && git lfs install \
-    && git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization \
-    && rm -rf /tmp/model/.git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add git-lfs
+RUN git lfs install
+RUN git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization
 
 FROM quay.io/jupyter/pytorch-notebook
-
-COPY --from=builder /tmp/model /home/jovyan/model
+COPY --from=cloner /tmp/model /home/jovyan/model
 ```
 
 A more detailed overview of the Dockerfile will be provided in _objective3_.
@@ -44,6 +40,8 @@ To build the container, run the following command below in the _objective2_ dire
 ```shell
 docker build -t llmapi_obj2 .
 ```
+
+> **NOTE:** The resulting Docker image will be very large (7-8GB)
 
 ## Deploy Jupyter Server
 

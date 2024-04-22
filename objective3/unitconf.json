@@ -1,0 +1,18 @@
+{
+	"listeners": {
+		"*:80": {
+			"pass": "applications/ts"
+		}
+	},
+	"applications": {
+		"ts": {
+			"type": "python",
+			"path": "/code/app",
+			"module": "api",
+			"callable": "app",
+			"environment": {
+				"HF_HOME": "/code/app"
+			}
+		}
+	}
+}

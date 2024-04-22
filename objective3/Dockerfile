@@ -1,24 +1,17 @@
-FROM python:3.11 as builder
+FROM alpine as cloner
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git-lfs \
-    && git lfs install \
-    && git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization \
-    && rm -rf /tmp/model/.git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add git-lfs
+RUN git lfs install
+RUN git clone https://huggingface.co/Falconsai/text_summarization /tmp/model/text_summarization
 
-FROM python:3.11
+FROM unit:python
 
-WORKDIR /code
+WORKDIR /code/app
 
-COPY requirements.txt /code/requirements.txt
+COPY requirements.txt app/api.py .
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY --from=cloner /tmp/model /code/app/model
+RUN chown -R unit:unit .
 
-RUN mkdir -p /code/app
-
-COPY ./app /code/app
-
-COPY --from=builder /tmp/model /code/app/model
-
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "80"]
+COPY unitconf.json /docker-entrypoint.d/
