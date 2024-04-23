@@ -128,7 +128,7 @@ For the next step, we will need to build our authorization header using data fro
 export HEADER_PAYLOAD=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiUXVvdGF0aW9uIFN5c3RlbSIsInN1YiI6InF1b3RlcyIsImlzcyI6Ik15IEFQSSBHYXRld2F5In0.ggVOHYnVFB8GVPE-VOIo3jD71gTkLffAY0hQOGXPL2I
 ```
 
-This command contains 3 components seperated by a period (_._):
+This command contains 3 components separated by a period (_._):
 
 1. _header:_ sets the algorithm and type of token
 1. _payload:_ claim
@@ -137,7 +137,7 @@ This command contains 3 components seperated by a period (_._):
 With our JWT prepared, we can now issue a new request with the JWT supplied as a _Bearer_ token in an _Authorization_ header:
 
 ```shell
-curl -H "Authorization: Bearer ${TEST_HEADER}" http://localhost/
+curl -H "Authorization: Bearer ${HEADER_PAYLOAD}" http://localhost/
 ```
 
 This should produce a JSON payload with a message of "Hello World", like below.  If you receive 401, please check ensure that your JWT matches the example above.
@@ -160,7 +160,7 @@ PAYLOAD=$(jq -c -n --arg text "$ARTICLE" '$ARGS.named')
 curl -i \
 -H "Accept:application/json" \
 -H "Content-Type:application/json" \
--H "Authorization: Bearer ${TEST_HEADER}" \
+-H "Authorization: Bearer ${HEADER_PAYLOAD}" \
 -X POST --data "$PAYLOAD" http://localhost/summarize/
 ```
 
