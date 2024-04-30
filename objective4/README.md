@@ -115,7 +115,7 @@ Lets examine what is happening in this code:
 Now, run the following command to test our API using K6; this will take a few minutes:
 
 ```shell
-docker run --rm -i grafana/k6 run - <script.js
+docker run --add-host=host.docker.internal:host-gateway --rm -i grafana/k6 run - <script.js
 ```
 
 You can also watch your docker CPU ulitization by opening a new shell and running the following command while the test is running:
@@ -174,7 +174,7 @@ docker compose exec nginx nginx -s reload
 Now that we have NGINX configured for rate limiting, let's test our API again with the following command:
 
 ```shell
-docker run --rm -i grafana/k6 run - <script.js
+docker run --add-host=host.docker.internal:host-gateway --rm -i grafana/k6 run - <script.js
 ```
 
 ```shell
