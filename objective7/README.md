@@ -93,7 +93,7 @@ Now that our environment is up and running, we can leverage our Jupyter Notebook
 
 Open a browser and access the Jupyter Notebook at: [http://localhost:8888](http://localhost:8888), the token is: _nginxrocks!_
 
-In your Jupyter Notebook, you notice a directory called _notebooks_ in your explorer window with a notebook called groq.ipynb_.  Open the groq.ipynb_ file.
+In your Jupyter Notebook, you notice a directory called _notebooks_ in your explorer window with a notebook called _groq.ipynb_.  Open the _groq.ipynb_ file.
 
 The objective of this code is very similar to what we saw in _objective6_, supply a brief except from a book that discusses the founding of F5 and we ask the model for a summary.  Let's test if the Mixtral model perform better than our local summarization model.
 
