@@ -177,16 +177,18 @@ Now that we have NGINX configured for rate limiting, let's test our API again wi
 docker run --add-host=host.docker.internal:host-gateway --rm -i grafana/k6 run - <script.js
 ```
 
+You should now see output similar to the following (your results may vary slightly):
+
 ```shell
 default ↓ [ 100% ] 10 VUs  30s
 
      ✓ status is 200 or 503
      ✗ body includes NGINX
-      ↳  19% — ✓ 12 / ✗ 50
+      ↳  21% — ✓ 28 / ✗ 101
      ✗ body includes C10K
-      ↳  19% — ✓ 12 / ✗ 50
+      ↳  21% — ✓ 28 / ✗ 101
      ✗ body includes Igor Sysoev
-      ↳  19% — ✓ 12 / ✗ 50
+      ↳  21% — ✓ 28 / ✗ 101
 ```
 
 In the example above, you'll notice that all requests returned a response code of 200 or 503, but only 19% of the requests returned a text summarization about the creation of NGINX.  This is ideal, and informs the requestor to try their request again after a random backoff period.
