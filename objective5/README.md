@@ -8,7 +8,7 @@ In this lab, we'll enhance the security of our model API by adding authorization
 
 ## Obtain NGINX License
 
-To leverage NGINX Plus, we will need access to the NGINX private registry, which requires a license SSL certificate and private key files or JSON Web Token file.  If you do not have an NGINX Plus License, please request a [free trial](https://www.nginx.com/free-trial-request/).  If you are an F5 employee, please use the internal trial mechanisms to generate a temporary license.
+To leverage NGINX Plus, we will need access to the NGINX private registry, which requires a license SSL certificate and private key files or JSON Web Token file.  If you do not have an NGINX Plus License, please request a [free trial](https://www.nginx.com/free-trial-request/).  If you are an F5 employee, please use the internal trial mechanisms to generate a temporary license (if you need guidance, search our internal Sharepoint site for _Generating Internal NGINX Trials on MyF5 & Salesforce Lightning_).
 
 ## Access NGINX Private Registry
 
